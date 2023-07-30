@@ -1,0 +1,19 @@
+{
+  "*.ts": [
+    "prettier --write",
+    "tsc --noemit --skipLibCheck --resolveJsonModule --esModuleInterop",
+    "eslint --fix"
+  ],
+  "*.tf": [
+    "terraform fmt terraform"
+  ],
+  "*.{md, json}": [
+    "prettier --write"
+  ],
+  "CHANGELOG.md": [
+    "kacl lint"
+  ],
+  ".circleci/config.yml": [
+    "circleci config validate"
+  ]
+}

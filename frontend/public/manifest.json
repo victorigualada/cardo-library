@@ -1,0 +1,9 @@
+{
+  "short_name": "Cardo Library",
+  "name": "Cardo Library",
+  "start_url": "/",
+  "background_color": "#3E61C2",
+  "display": "fullscreen",
+  "scope": "/",
+  "theme_color": "#3E61C2"
+}
