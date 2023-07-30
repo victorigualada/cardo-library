@@ -1,0 +1,13 @@
+#!/bin/bash
+set -euo pipefail
+
+base_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd -P)
+cd "$base_dir/.."
+
+git pull origin main
+
+docker compose build frontend
+
+docker compose build backend nginx db
+
+docker compose up --force-recreate -d frontend backend nginx db
