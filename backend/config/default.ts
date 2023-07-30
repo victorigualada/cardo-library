@@ -17,6 +17,11 @@ const def: IConfig = {
     windowMs: 15 * 60 * 1000, // minutes
     max: 10000, // limit each IP to max requests per windowMs
   },
+  swaggerConfig: {
+    swaggerTitle: 'Cardo Library',
+    swaggerDescription: 'API Documentation',
+    swaggerVersion: '0.0.1',
+  },
   saltRounds: 10,
   ormConfig: {
     type: 'postgres',
