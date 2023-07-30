@@ -1,0 +1,11 @@
+{
+  "frontendHost": "FRONTEND_HOST",
+  "jwtConfig": {
+    "secret": "JWT_SECRET"
+  },
+  "ormConfig": {
+    "username": "POSTGRES_USERNAME",
+    "password": "POSTGRES_PASSWORD",
+    "database": "POSTGRES_DATABASE"
+  }
+}
