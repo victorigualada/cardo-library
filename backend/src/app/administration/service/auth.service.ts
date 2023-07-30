@@ -7,25 +7,23 @@ import { User } from '../entity/user.entity';
 
 @Injectable()
 export class AuthService {
-
-  constructor(private readonly userService: UserService,
-              private readonly jwtService: JwtService) {}
+  constructor(private readonly userService: UserService, private readonly jwtService: JwtService) {}
 
   async validateUser(username: string, pass: string): Promise<User | any> {
     const user = await this.userService.findOneByUsernameAuth(username);
-    const passwordIsCorrect = async () =>  await bcrypt.compare(pass, user.password);
-    if (user && await passwordIsCorrect()) {
-      const { password, ...result } = user;
+    const passwordIsCorrect = async () => await bcrypt.compare(pass, user.password);
+    if (user && (await passwordIsCorrect())) {
+      const { password, ...result } = user; // eslint-disable-line @typescript-eslint/no-unused-vars
       return result;
     }
     return undefined;
   }
 
   async login(user: User): Promise<{
-    access_token: string,
+    access_token: string;
   }> {
     const foundUser: User = await this.userService.findOneByUsernameAuth(user.username);
-    if (!!foundUser) {
+    if (foundUser) {
       const payload: JwtPayload = { username: foundUser.username };
       return {
         access_token: this.jwtService.sign(payload),

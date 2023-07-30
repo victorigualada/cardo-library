@@ -7,7 +7,7 @@
     "experimentalDecorators": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "target": "es2017",
+    "target": "es2015",
     "sourceMap": false,
     "outDir": "./dist",
     "baseUrl": "./",

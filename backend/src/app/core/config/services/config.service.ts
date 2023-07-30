@@ -48,6 +48,11 @@ export class ConfigService implements IConfig {
     return { ...this.get('database')! };
   }
 
+  get ormConfig(): ConnectionOptions {
+    // return a plain object in order to be modificable by typeorm
+    return { ...this.get('ormConfig')! };
+  }
+
   get saltRounds(): number {
     return this.get('saltRounds');
   }

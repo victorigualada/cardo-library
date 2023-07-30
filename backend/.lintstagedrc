@@ -1,0 +1,10 @@
+{
+  "*.ts": [
+    "prettier --write",
+    "nest build",
+    "eslint --fix"
+  ],
+  "*.{md, json}": [
+    "prettier --write"
+  ],
+}

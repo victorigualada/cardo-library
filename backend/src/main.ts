@@ -15,37 +15,33 @@ import { ConfigModule } from './app/core/config/config.module';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  const config = app
-    .select(ConfigModule)
-    .get(ConfigService);
+  const config = app.select(ConfigModule).get(ConfigService);
 
   if (config.globalPrefix) {
     app.setGlobalPrefix(config.globalPrefix);
   }
 
   // Configure body-parser for uploads
-  app.use(bodyParser.json({limit: '50mb'}));
-  app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+  app.use(bodyParser.json({ limit: '50mb' }));
+  app.use(bodyParser.urlencoded({ limit: '50mb', extended: true }));
 
   // Security
   app.enableCors();
   app.use(helmet());
-  // app.use(csurf());
-  app.use(
-    rateLimit(config.rateLimit),
-  );
+  app.use(rateLimit(config.rateLimit));
 
   const httpAdapter = app.get(HttpAdapterHost);
   app.useGlobalFilters(new HttpExceptionFilter(httpAdapter));
+
+  configureSwagger(app, config);
 
   await app.listen(config.port);
 }
 
 function setEnvironmentVariables(): void {
-  process.env.NODE_CONFIG_DIR = [
-    path.join(process.cwd(), 'config'),
-    path.join(process.cwd(), '../config'),
-  ].join(path.delimiter);
+  process.env.NODE_CONFIG_DIR = [path.join(process.cwd(), 'config'), path.join(process.cwd(), '../config')].join(
+    path.delimiter,
+  );
 }
 
 // @ts-ignore
