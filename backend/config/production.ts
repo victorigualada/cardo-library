@@ -2,7 +2,7 @@ import { IConfig } from 'src/app/core/config/types';
 
 const prod: Partial<IConfig> = {
   isDev: false,
-  host: 'cardo-library.com',
+  host: 'victorigualada.online',
   frontendHost: 'frontend:3000',
   port: 3000,
   version: '0.0.1',
