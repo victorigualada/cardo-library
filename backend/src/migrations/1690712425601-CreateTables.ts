@@ -32,7 +32,6 @@ export class UpdateTables1690712425601 implements MigrationInterface {
                 'author' character varying NOT NULL,
                 'year' integer NOT NULL,
                 'ISBN' character varying NOT NULL,
-                'comment' character varying NOT NULL,
                 CONSTRAINT 'UQ_7459018069b9c93b1d66ec013a4' UNIQUE ('ISBN'),
                 CONSTRAINT 'PK_a3afef72ec8f80e6e5c310b28a4' PRIMARY KEY ('id')
             )

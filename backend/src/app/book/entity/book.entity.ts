@@ -23,8 +23,4 @@ export class Book extends BaseEntity {
   @IsString()
   @Index()
   ISBN: string;
-
-  @Column()
-  @IsString()
-  comment: string;
 }

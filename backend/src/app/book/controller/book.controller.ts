@@ -1,18 +1,9 @@
-import {
-  Body,
-  Controller,
-  Delete,
-  Get,
-  Param,
-  Patch,
-  Post,
-  UseGuards
-} from '@nestjs/common';
-import { Public } from '../../core/decorators/public.decorator';
-import { BookService } from '../service/book.service';
-import { DeleteResult } from 'typeorm';
-import { JwtGuard } from '../../core/guards/auth.guard';
-import { Book } from '../entity/book.entity';
+import {Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards} from '@nestjs/common';
+import {BookService} from '../service/book.service';
+import {DeleteResult} from 'typeorm';
+import {JwtGuard} from '../../core/guards/auth.guard';
+import {Book} from '../entity/book.entity';
+import {Public} from '../../core/decorators/public.decorator';
 
 @UseGuards(JwtGuard)
 @Controller('books')
@@ -42,7 +33,7 @@ export class BookController {
     return await this.service.save(book);
   }
 
-  @Post()
+  @Put()
   async replaceBook(@Body() book: Book): Promise<Book> {
     return await this.service.save(book);
   }
