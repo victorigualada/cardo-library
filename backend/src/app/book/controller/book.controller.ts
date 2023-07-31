@@ -1,9 +1,10 @@
-import {Body, Controller, Delete, Get, Param, Patch, Post, Put, UseGuards} from '@nestjs/common';
+import {Body, Controller, Delete, Get, Param, Patch, Post, Put, Query, UseGuards} from '@nestjs/common';
 import {BookService} from '../service/book.service';
 import {DeleteResult} from 'typeorm';
 import {JwtGuard} from '../../core/guards/auth.guard';
 import {Book} from '../entity/book.entity';
 import {Public} from '../../core/decorators/public.decorator';
+import {SearchParams} from '../interfaces/search-params.interface';
 
 @UseGuards(JwtGuard)
 @Controller('books')
@@ -18,12 +19,12 @@ export class BookController {
   }
 
   @Public()
-  @Get('/:id')
-  async getBook(@Param('id') id: any): Promise<Book> {
-    return await this.service.getBook(id);
+  @Get('search')
+  async searchBooks(@Query() query: SearchParams): Promise<Book[]> {
+    return await this.service.searchBooks(query);
   }
 
-  @Patch('/:id')
+  @Patch(':id')
   async updateOneBase(@Param('id') id: number, @Body() partialBook: Book): Promise<Book> {
     return await this.service.update(id, partialBook);
   }

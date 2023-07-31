@@ -57,21 +57,6 @@ describe('Book API integration tests', () => {
     });
   });
 
-  describe('#getBook', () => {
-    it('should return a book', async () => {
-      // arrange
-      jest
-        .spyOn(repository, 'findOneBy')
-        .mockImplementation(() => Promise.resolve(BookMock[0]));
-
-      // act
-      const books = await controller.getBook(1);
-
-      // assert
-      expect(books).toEqual(BookMock[0]);
-    });
-  });
-
   describe('#createBook', () => {
     it('should create a book', async () => {
       // arrange
